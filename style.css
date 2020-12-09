@@ -10,6 +10,10 @@ body {
   min-height: 100%;
 }
 
+input[type="text"] {
+  padding: 10px;
+}
+
 h1,
 h2,
 h3,
@@ -19,12 +23,7 @@ h6 {
   font-weight: 500;
 }
 
-#error {
-  color: red;
-  float: left;
-}
-
-#updateError {
+.error {
   color: red;
   float: left;
 }
@@ -81,9 +80,6 @@ h6 {
 }
 
 .button {
-  background-color: white;
-  color: #999999;
-  border: 1px solid #999999;
   font-weight: 900;
   text-transform: capitalize;
   outline: none;
@@ -94,47 +90,36 @@ h6 {
   transition-duration: 600ms;
 }
 
-.button:hover {
+.buttonGrey {
+  background-color: white;
+  color: #999999;
+  border: 1px solid #999999;
+}
+.buttonGrey:hover {
   border-radius: 30px;
   background-color: #999999;
   color: white;
 }
 
-.deleteButton {
+.buttonRed {
   background-color: white;
   color: #f13608;
   border: 1px solid #f13608;
-  font-weight: 900;
-  text-transform: capitalize;
-  outline: none;
-  padding: 10px 30px;
-  margin: 0px 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  transition-duration: 600ms;
 }
 
-.deleteButton:hover {
+.buttonRed:hover {
   border-radius: 30px;
   background-color: #f13608;
   color: white;
 }
 
-.editButton {
+.buttonBlue {
   background-color: white;
   color: #3679ff;
   border: 1px solid #3679ff;
-  font-weight: 900;
-  text-transform: capitalize;
-  outline: none;
-  padding: 10px 30px;
-  margin: 0px 10px;
-  margin-bottom: 10px;
-  border-radius: 5px;
-  transition-duration: 600ms;
 }
 
-.editButton:hover {
+.buttonBlue:hover {
   border-radius: 30px;
   background-color: #3679ff;
   color: white;

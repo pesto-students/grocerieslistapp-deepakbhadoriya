@@ -8,12 +8,13 @@
     <title>Pesto The groceries list app</title>
   </head>
   <body onload="isUserLoggedIn()">
+
     <div class="boxContainer" id="userLogin">
       <center>
         <h1>The groceries list app</h1>
         <br /><br />
         <form >
-          <input class="inputField" id="userNameField" type="text" placeholder="Enter your username" /><br /><br />
+          <input class="inputField" id="userNameField" type="text" placeholder="Enter your username"  /><br /><br />
           <button type="submit" class="primaryButton" onclick="loginUser(event)" >Submit</button>
         </form>
       </center>
@@ -33,18 +34,20 @@
             <br />
           </div>
 
+          <form>
           <div class="row">
             <div align="center" class="addItemContainer">
-              <input class="inputField" style="width: 100%" placeholder="Enter grocery Item" id="groceryItem" />
+              <input type="text" class="inputField" style="width: 100%" placeholder="Enter grocery Item" id="groceryItem"  />
               <div style="width: 100%; margin-top: 10px">
-                <small id="error"></small>
+                <small id="error" class="error"></small>
                 <small id="remainingItem">5 item can be added</small>
               </div>
             </div>
             <div align="center" class="addItemButtonContainer">
-              <button class="editButton" onclick="addGroceryItem()">+</button><br />
+              <button type="submit" class="button buttonBlue" onclick="addGroceryItem(event)">+</button><br />
             </div>
           </div>
+        </form>
           <div style="padding-top: 20px; height: auto;">
             <ul style="list-style-type:none; display: inline;" id="groceryListContainer"></ul>
           </div>
@@ -59,14 +62,14 @@
           <br />
           <br />
           <form>
-                <input id="editGroceryItem" class="inputField" style="width:100%" />
-                <small id="updateError"></small>
+                <input type="input" id="editGroceryItem" class="inputField" style="width:100%"  />
+                <small id="updateError" class='error'></small>
                 
                 <br/>
                 <br/>
                 <input id="editGroceryItemBackup" style='display: none' />
-                <button class="editButton" align="center"  type="submit" onclick="updateGroceryItem(event)">Update</button>
-                <button class="button" align="center"  type="submit" onclick="toggleDialog()">Cancel</button>
+                <button class="button buttonBlue" align="center"  type="submit" onclick="updateGroceryItem(event)">Update</button>
+                <button class="button buttonGrey" align="center"  type="submit" onclick="toggleDialog()">Cancel</button>
             </div>
           </form>
         </div>

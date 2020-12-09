@@ -1,10 +1,7 @@
-// localStorage.setItem('currentUser','deepak')
-
-// localStorage.setItem('appData',JSON.stringify([{userName:"deepak", groceryItems:[]}]))
-
 const localStorageAppData = JSON.parse(localStorage.getItem("appData"));
 let appData = localStorageAppData ? localStorageAppData : [];
 
+//function to check if user logged in
 const isUserLoggedIn = () => {
   let currentUser = localStorage.getItem("currentUser");
   if (currentUser) {
@@ -20,6 +17,7 @@ const isUserLoggedIn = () => {
   }
 };
 
+//login user and set current user
 const loginUser = (event) => {
   event.preventDefault();
   const userName = document.getElementById("userNameField").value;
@@ -33,24 +31,18 @@ const loginUser = (event) => {
   document.getElementById("userNameField").value = "";
 };
 
+//logout user and remove current user from local storage
 const logoutUser = () => {
   localStorage.removeItem("currentUser");
   deleteAllGroceryItem();
-  document.getElementById("remainingItem").innerHTML = ``;
+  document.getElementById("remainingItem").innerHTML = "";
   document.getElementById("error").innerHTML = "";
   isUserLoggedIn();
 };
 
-document.getElementById("groceryItem").addEventListener("keyup", function (event) {
-  const groceryItem = document.getElementById("groceryItem").value;
-  if (event.key == "Enter" && groceryItem !== "") {
-    addGroceryItem();
-  } else {
-    document.getElementById("error").innerHTML = groceryItem === "" ? "*Required" : "";
-  }
-});
-
-const addGroceryItem = () => {
+//add grocery item in local storage and dom
+const addGroceryItem = (event) => {
+  event.preventDefault();
   const groceryItem = document.getElementById("groceryItem").value;
   let userData = getUserData();
   if (groceryItem === "" || groceryItem === " ") {
@@ -72,6 +64,7 @@ const addGroceryItem = () => {
   }
 };
 
+// delete all the grocery item from dom 
 const deleteAllGroceryItem = () => {
   const groceryListContainer = document.getElementById("groceryListContainer");
   let i = 0;
@@ -80,6 +73,7 @@ const deleteAllGroceryItem = () => {
   }
 };
 
+//delete single grocery item from local storage
 const deleteGroceryItem = (groceryItem) => {
   let userData = getUserData();
   userData.groceryItems = userData.groceryItems.filter((item) => item !== groceryItem);
@@ -87,6 +81,7 @@ const deleteGroceryItem = (groceryItem) => {
   refreshList();
 };
 
+//Append grocery item in dom
 const appendGroceryItem = (groceryItem) => {
   const groceryListContainer = document.getElementById("groceryListContainer");
 
@@ -96,12 +91,14 @@ const appendGroceryItem = (groceryItem) => {
   groceryItemLi.innerHTML = `<h3>${groceryItem}</h3>`;
 
   const editButton = document.createElement("button");
-  editButton.classList.add("editButton");
+  editButton.classList.add("button");
+  editButton.classList.add("buttonBlue");
   editButton.innerHTML = "Edit";
   editButton.addEventListener("click", () => editGroceryItem(groceryItem));
 
   const deleteButton = document.createElement("button");
-  deleteButton.classList.add("deleteButton");
+  deleteButton.classList.add("button");
+  deleteButton.classList.add("buttonRed");
   deleteButton.innerHTML = "delete";
   deleteButton.addEventListener("click", () => deleteGroceryItem(groceryItem));
 
@@ -109,41 +106,50 @@ const appendGroceryItem = (groceryItem) => {
   groceryItemLi.appendChild(editButton);
 
   groceryListContainer.appendChild(groceryItemLi);
-
-  const numberOfChild = groceryListContainer.childElementCount;
-  document.getElementById("remainingItem").innerHTML = `${5 - numberOfChild} item can be added`;
+  updateNumberOfGroceryItemLeft()
 };
 
+//get user data from localStorage
 const getUserData = () => {
   const currentUser = localStorage.getItem("currentUser");
   return appData.filter((item) => item.userName === currentUser)[0];
 };
 
+//update user data in localStorage
 const setUserData = (data) => {
   const tempData = appData.map((item) => (item.userName === data.userName ? data : item));
   localStorage.setItem("appData", JSON.stringify(tempData));
 };
 
+//refresh the grocery list dom
 const refreshList = () => {
   deleteAllGroceryItem();
   const userData = getUserData();
   userData.groceryItems.map((groceryItem) => appendGroceryItem(groceryItem));
-  const numberOfChild = groceryListContainer.childElementCount;
-  document.getElementById("remainingItem").innerHTML = `${5 - numberOfChild} item can be added`;
+  updateNumberOfGroceryItemLeft();
 };
 
+//update the number of grocery item left
+const updateNumberOfGroceryItemLeft = () => {
+  const groceryListContainer = document.getElementById("groceryListContainer");
+  const numberOfChild = groceryListContainer.childElementCount;
+  document.getElementById("remainingItem").innerHTML = `${5 - numberOfChild} item can be added`;
+}
+
+//set value in dialog edit dialog box and toggle edit dialog
 const editGroceryItem = (groceryItem) => {
   document.getElementById("editGroceryItem").value = groceryItem;
   document.getElementById("editGroceryItemBackup").value = groceryItem;
   toggleDialog();
 };
 
+//update grocery item
 const updateGroceryItem = (event) => {
   event.preventDefault();
   const oldGroceryItem = document.getElementById("editGroceryItemBackup").value;
   const updatedGroceryItem = document.getElementById("editGroceryItem").value;
 
-  if (updatedGroceryItem === "" || updatedGroceryItem === " ") {
+  if (updatedGroceryItem.trim() === "" || updatedGroceryItem === " ") {
     document.getElementById("updateError").innerHTML = "*Required";
   } else {
     let userData = getUserData();
@@ -155,6 +161,7 @@ const updateGroceryItem = (event) => {
   }
 };
 
+// toggle for edit dialog
 const toggleDialog = () => {
   const display = document.getElementById("editDialog").style.display;
   display === "block"
