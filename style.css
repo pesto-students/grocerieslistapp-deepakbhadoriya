@@ -1,0 +1,221 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #f9f9f9;
+  font-family: "Quicksand", sans-serif;
+  font-weight: 300;
+  width: 100%;
+  min-height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+}
+
+#error {
+  color: red;
+  float: left;
+}
+
+#updateError {
+  color: red;
+  float: left;
+}
+
+#remainingItem {
+  color: #3a3a3a;
+  float: right;
+}
+
+.boxContainer {
+  display: flex;
+  width: 50%;
+  margin: auto;
+  margin-top: 4%;
+  border-radius: 5px;
+  flex-basis: 40%;
+  padding: 50px;
+  box-shadow: 1px 1px 30px #d1d1d1;
+  justify-content: center;
+  background-color: white;
+}
+
+.inputField {
+  padding: 10px 0;
+  border-radius: 5px;
+  border: solid 2px #b5b5b5;
+}
+
+.primaryButton {
+  background: #0575e6; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, #021b79, #0575e6); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to top,
+    #021b79,
+    #0575e6
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  color: white;
+  font-weight: 900;
+  text-transform: capitalize;
+  border: none;
+  outline: none;
+  padding: 10px 30px;
+  margin: 0px 30px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition-duration: 200ms;
+}
+
+.primaryButton:hover {
+  border-radius: 30px;
+  padding: 10px 50px;
+  margin: 0px 10px;
+  margin-bottom: 10px;
+}
+
+.button {
+  background-color: white;
+  color: #999999;
+  border: 1px solid #999999;
+  font-weight: 900;
+  text-transform: capitalize;
+  outline: none;
+  padding: 10px 30px;
+  margin: 0px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition-duration: 600ms;
+}
+
+.button:hover {
+  border-radius: 30px;
+  background-color: #999999;
+  color: white;
+}
+
+.deleteButton {
+  background-color: white;
+  color: #f13608;
+  border: 1px solid #f13608;
+  font-weight: 900;
+  text-transform: capitalize;
+  outline: none;
+  padding: 10px 30px;
+  margin: 0px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition-duration: 600ms;
+}
+
+.deleteButton:hover {
+  border-radius: 30px;
+  background-color: #f13608;
+  color: white;
+}
+
+.editButton {
+  background-color: white;
+  color: #3679ff;
+  border: 1px solid #3679ff;
+  font-weight: 900;
+  text-transform: capitalize;
+  outline: none;
+  padding: 10px 30px;
+  margin: 0px 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  transition-duration: 600ms;
+}
+
+.editButton:hover {
+  border-radius: 30px;
+  background-color: #3679ff;
+  color: white;
+}
+
+#editDialog {
+  display: none;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 5%;
+}
+
+#groceryListContainer {
+  height: auto;
+}
+
+.groceryItem {
+  width: 100%;
+  padding: 10px 0px;
+  min-height: 40px;
+  overflow: hidden;
+  border-bottom: 1px solid #b5b5b5;
+  margin-bottom: 10px;
+}
+
+.groceryItem h3 {
+  display: inline;
+  height: auto;
+}
+
+.groceryItem button {
+  float: right;
+}
+.addItemContainer {
+  width: 80%;
+  margin-bottom: 40px;
+}
+.addItemButtonContainer {
+  width: 20%;
+}
+.row {
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .mobileWidth {
+    width: 100% !important;
+  }
+  .addItemContainer {
+    width: 100% !important;
+  }
+  .addItemButtonContainer {
+    width: 100% !important;
+  }
+  .row {
+    width: 100%;
+    flex-direction: none;
+    display: block;
+  }
+  .boxContainer {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    margin-top: 5%;
+    border-radius: 5px;
+    flex-basis: 40%;
+    padding: 20px;
+    box-shadow: 1px 1px 30px #d1d1d1;
+    justify-content: center;
+    background-color: white;
+  }
+  .groceryItem h3 {
+    display: block;
+    height: auto;
+    margin-bottom: 10px;
+  }
+}

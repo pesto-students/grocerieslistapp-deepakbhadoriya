@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet" />
+    <title>Pesto The groceries list app</title>
+  </head>
+  <body onload="isUserLoggedIn()">
+    <div class="boxContainer" id="userLogin">
+      <center>
+        <h1>The groceries list app</h1>
+        <br /><br />
+        <form >
+          <input class="inputField" id="userNameField" type="text" placeholder="Enter your username" /><br /><br />
+          <button type="submit" class="primaryButton" onclick="loginUser(event)" >Submit</button>
+        </form>
+      </center>
+    </div>
+
+    <div class="boxContainer" id="groceryList">
+      <div style="width: 100%;">
+        <div align="right" style="width: 100%;  margin-bottom: 50px">
+            <h3 id="userName"></h3></br>
+            <button class="primaryButton" onclick="logoutUser()">LogOut</button>
+        </div>
+
+        <div style="justify-content: center; display: flex; flex-direction: column">
+          <div style="flex: 1">
+            <h1 align='center'>Enter your grocery item here</h1>
+            <br />
+            <br />
+          </div>
+
+          <div class="row">
+            <div align="center" class="addItemContainer">
+              <input class="inputField" style="width: 100%" placeholder="Enter grocery Item" id="groceryItem" />
+              <div style="width: 100%; margin-top: 10px">
+                <small id="error"></small>
+                <small id="remainingItem">5 item can be added</small>
+              </div>
+            </div>
+            <div align="center" class="addItemButtonContainer">
+              <button class="editButton" onclick="addGroceryItem()">+</button><br />
+            </div>
+          </div>
+          <div style="padding-top: 20px; height: auto;">
+            <ul style="list-style-type:none; display: inline;" id="groceryListContainer"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="editDialog">
+      <div class="boxContainer">
+        <div align="center" style='width:100%'>
+          <h2 >Edit Grocery Item</h2>
+          <br />
+          <br />
+          <form>
+                <input id="editGroceryItem" class="inputField" style="width:100%" />
+                <small id="updateError"></small>
+                
+                <br/>
+                <br/>
+                <input id="editGroceryItemBackup" style='display: none' />
+                <button class="editButton" align="center"  type="submit" onclick="updateGroceryItem(event)">Update</button>
+                <button class="button" align="center"  type="submit" onclick="toggleDialog()">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>
